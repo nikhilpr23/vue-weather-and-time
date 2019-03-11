@@ -53,6 +53,18 @@ p {
   opacity: 0.8;
 }
 
+@media only screen and (min-width: 1600px) {
+  .Card {
+  width:30%;
+  height: 140px;
+  box-shadow: gray;
+  cursor: pointer;
+  margin: 10px 2px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  }
+}
+
 @media only screen and (max-width: 600px){
   .Card {
     height: 120px;
