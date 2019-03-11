@@ -17,7 +17,10 @@
             <p class="content">{{description}}</p>
         </div>
         <p class="title"> Time </p> 
-        <p class="content">{{time}}<p/>
+        <p class="content" v-show="!loadingtime">{{time}}<p/>
+        <div class="centerwrap">
+            <p class="spinner" v-show="loadingtime"/>   
+        </div> 
     </div>
     <div v-else class="empty">
         <span>Please pick a location to see details</span>
@@ -29,7 +32,7 @@
 
 export default {
     name: 'CurrentWeather',
-    props: ['temp', 'location', 'time', 'description', 'icon', 'selected', 'loading']
+    props: ['temp', 'location', 'time', 'description', 'icon', 'selected', 'loading', 'loadingtime']
 }
 </script>
 

@@ -18,7 +18,8 @@
           :time="time"
           :icon="icon"
           :selected="selected"
-          :loading="loading" />
+          :loading="loading"
+          :loadingtime="loadingtime" />
       </div>
     </div>
   </div>
@@ -31,7 +32,7 @@ import axios from 'axios';
 
 const weatherAPI = 'https://api.openweathermap.org/data/2.5/weather?';
 const weatherAPIkey = 'APPID=9c9cd4f80421c0e098a2660126fd7559';
-const timeAPI = 'http://worldtimeapi.org/api/timezone/'
+const timeAPI = 'https://api.timezonedb.com/v2.1/get-time-zone?key=GCRBKBI1SKU7&format=json&by=zone&zone='
 
 export default {
   name: 'app',
@@ -56,7 +57,8 @@ export default {
       time: '',
       icon:'',
       selected: false,
-      loading: false
+      loading: false,
+      loadingtime: false
     }
   },
   computed: {
@@ -107,11 +109,16 @@ export default {
     },
 
     getTime(timezone) {
+      this.loadingtime = true;
       let fullURL = timeAPI + timezone;
       axios
         .get(fullURL)
-        .then(resp => this.time = resp.data.datetime.substr(11,5) + ' ' + resp.data.abbreviation)
-        .catch(() => this.time = "Unable to get Time")
+      .then(resp => {
+        this.loadingtime = false;
+        this.time = resp.data.formatted.substr(11,5) + ' ' + resp.data.abbreviation})
+        .catch(() => {
+          this.loadingtime = false;
+          this.time = "Unable to get Time"})
 
     },
 
