@@ -157,7 +157,7 @@ export default {
 
 h1 {
   text-align: center;
-  font-size: xx-large;
+  font-size: calc(var(--main-font-size)/1.33);
   text-decoration: underline;
   color: rgb(48, 47, 47);  
   text-shadow: 1px 1px 3px;
